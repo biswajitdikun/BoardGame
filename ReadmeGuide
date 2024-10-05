@@ -1,0 +1,276 @@
+# CS611-Assignment 1
+## Tic Tac Toe // Order and Chaos // Super Tic Tac Toe
+---------------------------------------------------------------------------
+- Name: Biswajit Satapathy
+- Email: biswa@bu.edu
+- Student ID: U62897143
+## Files
+---------------------------------------------------------------------------
+AbstractGame.java: This is an abstract class that provides a shared functionality like configuring the game, getting team details, switching players.
+Board.java : This class provides methods to reset the board, check if it is full, place the symbol, display, manage board size, tile states.
+Game.java : This is an interface which provides functionality to play, reset, configure and fetch winner.
+GameConfiguration.java : This class is used to manage and set board size and team details.
+GameController.java : This class is directly called from the main class which is responsible for maintaining the flow of the game, choose in between the games, get team name, configuration and starting the game.
+GameFactory.java : This class is responsible for calling the respective game class where the actual logic of the game is written.
+GameStats.java : This class manages the statistics like win, tie etc for the games.
+InputHandler.java: This class handles the input throughout the game, is interactive and prompt the user for proper input in case of bad inputs provided.
+Main.java : Project initialization
+OrderChaos.java : This class manages the entire game logic for Order and Chaos game, manages player, call for symbol placement and continuously check for win conditions.
+Piece.java: This class represents a piece in the game, it basically sets and fetch the symbol.
+SuperTicTacToe.java : This class manages the entire game logic for Super Tic Tac Toe, manages player, have function for symbol placement, continuously
+check for win conditions in smaller board and larger win conditions. Rules written in the class
+Team.java: This class manages and returns team names and their symbol.
+TicTacToe.java : This class manages the entire game logic for TicTacToe game, manages player, call for symbol placement and continuously check for win conditions.
+Tile.java : This class represents a single tile in the game board. It manages to put and fetch symbol, check for occupancy etc.
+
+## Notes
+In my last submission there was a mistake in Order and Chaos Win Game Check Logic, so corrected the same
+along with the implementation of Super Tic Tac Toe logic.
+---------------------------------------------------------------------------
+Please explain the cool features of your program. Anything that you feel like you did a good job at or were creative about, explain it in bullets here. Additionally, any design decisions should be made here.
+1. Dynamic Board Size: Player can choose the board size from 3-10 in Tic Tac Toe and 6-10 in Order and Chaos.
+2. Game Statistics: Displays game statistics at the end of multiple game rounds to show team wins and ties.
+3. Multiple Game: User can choose to play any game at the end of a game. For example user can play 3 TTT games,2 O&C games and then again 4 TTT games based on the choice of user and will get a final performance chart for all the games played.
+4. Choose your own symbol: User can select their own symbol in TTT game and super TTT game for better interaction and it has the feature to allow only unique symbols.
+5.Input Handler: This is a really basic but cool feature to prevent bad inputs for user throughout the game interaction.
+
+## How to compile and run
+---------------------------------------------------------------------------
+1. Navigate to the directory BoardGame/src after unzipping the files
+2. Run the following instructions:
+javac *.java
+java Main
+## Input/Output Example
+---------------------------------------------------------------------------
+
+Output:
+Choose a game:
+1. Tic Tac Toe
+2. Order & Chaos
+3. Super Tic Tac Toe
+4. Exit
+Enter your choice (1-4):
+Input:
+1
+Output:
+Welcome to Tic-Tac-Toe!
+Enter board size (3-10):
+Input:
+3
+Output:
+Enter name for Team 1:
+Input:
+Knight
+Output:
+Enter symbol for Knight:
+Input:
+X
+Output:
+Enter name for Team 2:
+Input:
+Warriors
+Output:
+Enter symbol for Warriors:
+Input:
+O
+Output:
+   |   |
+---+---+---
+   |   |
+---+---+---
+   |   |
+
+Knight's turn
+Enter row (1-3):
+Input:
+2
+Output:
+Enter column (1-3):
+Input:
+3
+Output:
+   |   |
+---+---+---
+   |   | X
+---+---+---
+   |   |
+
+Warriors's turn
+Enter row (1-3):
+Input:
+1
+Output:
+Enter column (1-3):
+Input:
+2
+Output:
+   | O |
+---+---+---
+   |   | X
+---+---+---
+   |   |
+
+Knight's turn
+Enter row (1-3):
+
+   | O | O
+---+---+---
+ X | X | X
+---+---+---
+   |   |
+
+Knight wins with X!
+Do you want to play another game? (yes/no):
+Input:
+Yes
+Output:
+Choose a game:
+1. Tic Tac Toe
+2. Order & Chaos
+3. Super Tic Tac Toe
+4. Exit
+Enter your choice (1-4):
+Input:
+2
+Output:
+Welcome to Order and Chaos!
+Enter board size (6-10):
+Input: 6
+Output:
+Enter name for Team 1:
+Input:
+Order
+Output:
+Enter name for Team 2:
+Input:
+Chaos
+Output:
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+
+Order's turn
+Choose your symbol (X or O):
+Output:
+X
+Input:
+Enter row (1-6):
+Output:
+5
+Input:
+Enter column (1-6):
+Output:
+5
+Input:
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   |   |
+---+---+---+---+---+---
+   |   |   |   | X |
+---+---+---+---+---+---
+   |   |   |   |   |
+
+Chaos's turn
+Choose your symbol (X or O):
+
+Do you want to play another game? (yes/no): yes
+Choose a game:
+1. Tic Tac Toe
+2. Order & Chaos
+3. Super Tic Tac Toe
+4. Exit
+Enter your choice (1-4): 3
+Welcome to Super Tic Tac Toe!
+Default Board size: 9 X 9
+Enter name for Team 1: Biswa
+Enter symbol for Biswa: X
+Enter name for Team 2: Jit
+Enter symbol for Jit: O
+
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+===+===+===++===+===+===++===+===+===
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+===+===+===++===+===+===++===+===+===
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+
+Biswa's turn
+Enter Row (1-9): 4
+Enter Column (1-9): 6
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+===+===+===++===+===+===++===+===+===
+   |   |   ||   |   | X ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+===+===+===++===+===+===++===+===+===
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+
+Jit's turn
+Enter Row (1-9):
+Enter Row (1-9): 2
+Enter Column (1-9): 6
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   | O ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+===+===+===++===+===+===++===+===+===
+   |   |   ||   |   | X ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+===+===+===++===+===+===++===+===+===
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+---+---+---||---+---+---||---+---+---
+   |   |   ||   |   |   ||   |   |
+.
+.
+.
+
+Game Statistics:
+TicTacToe Stats:
+Wins: 1, Ties: 0
+<Team Name> Wins: <Number>
+OrderChaos Stats:
+.
+.
+SuperTicTacToe Stats:
+.
+.
+.
