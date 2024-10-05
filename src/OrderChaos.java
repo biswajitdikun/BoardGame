@@ -19,7 +19,7 @@ public class OrderChaos extends AbstractGame {
             System.out.println(currentTeam.getName() + "'s turn");
 
             // User can choose either X or O
-            String symbol = inputHandler.getStringInput("Choose your symbol (X or O): ", "x", "o"); // Lowercase for easier comparison
+            String symbol = inputHandler.getStringInput("Choose your symbol (X or O): ", "x", "o").toUpperCase(); // Lowercase for easier comparison
             Piece piece = new Piece(symbol.toUpperCase()); // Store as upper case in piece
 
 
@@ -75,18 +75,37 @@ public class OrderChaos extends AbstractGame {
     }
 
     private boolean checkDiagonal(String symbol) {
-        return checkLine(symbol, 0, 0, 1, 1) || checkLine(symbol, 0, board.getSize() - 1, 1, -1);
+        // Check all diagonals from top-left to bottom-right
+        for (int i = 0; i <= board.getSize() - 5; i++) {
+            for (int j = 0; j <= board.getSize() - 5; j++) {
+                if (checkLine(symbol, i, j, 1, 1)) {
+                    return true;
+                }
+            }
+        }
+
+        // Check all diagonals from top-right to bottom-left
+        for (int i = 0; i <= board.getSize() - 5; i++) {
+            for (int j = 4; j < board.getSize(); j++) {
+                if (checkLine(symbol, i, j, 1, -1)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
+
 
     private boolean checkLine(String symbol, int startRow, int startCol, int rowIncrement, int colIncrement) {
         for (int i = 0; i < 5; i++) { // Check for 5 in a row
-            int newRow = startRow + i * rowIncrement;
-            int newCol = startCol + i * colIncrement;
-            if (newRow >= board.getSize() || newCol >= board.getSize() || newCol < 0 ||
-                    board.getTile(newRow, newCol) != symbol.charAt(0)) {
+            int srow = startRow + i * rowIncrement;
+            int scol = startCol + i * colIncrement;
+            if (board.getTile(srow,scol) != symbol.charAt(0)) {
                 return false;
             }
         }
         return true;
     }
+
 }

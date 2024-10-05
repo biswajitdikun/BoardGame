@@ -65,4 +65,52 @@ class Board {
         }
         System.out.println();
     }
+
+    //Dispaly Super Tic Tac Toe
+    public void superDisplay() {
+        int subGridSize = 3; // Each small Tic-Tac-Toe is 3x3
+        int totalSize = subGridSize * subGridSize; // Total grid is 9x9
+
+        // Loop through rows
+        for (int i = 0; i < totalSize; i++) {
+            // Print individual row from each subgrid row
+            for (int j = 0; j < totalSize; j++) {
+                System.out.print(" " + tiles[i][j].getSymbol() + " ");
+
+                // Print vertical separator for subgrids
+                if ((j + 1) % subGridSize == 0 && j < totalSize - 1) {
+                    System.out.print("||"); // Double separator between subgrids
+                } else if (j < totalSize - 1) {
+                    System.out.print("|"); // Regular separator within subgrid
+                }
+            }
+            System.out.println();
+
+            // Print horizontal separator between rows
+            if ((i + 1) % subGridSize == 0 && i < totalSize - 1) {
+                // Double horizontal separator between subgrids
+                for (int j = 0; j < totalSize; j++) {
+                    System.out.print("==="); // Thicker lines
+                    if ((j + 1) % subGridSize == 0 && j < totalSize - 1) {
+                        System.out.print("++"); // Thicker intersection points
+                    } else if (j < totalSize - 1) {
+                        System.out.print("+"); // Regular intersection points
+                    }
+                }
+                System.out.println();
+            } else if (i < totalSize - 1) {
+                // Regular horizontal separator within subgrids
+                for (int j = 0; j < totalSize; j++) {
+                    System.out.print("---");
+                    if ((j + 1) % subGridSize == 0 && j < totalSize - 1) {
+                        System.out.print("||");
+                    } else if (j < totalSize - 1) {
+                        System.out.print("+");
+                    }
+                }
+                System.out.println();
+            }
+        }
+        System.out.println();
+    }
 }

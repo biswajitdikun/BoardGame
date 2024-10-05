@@ -10,7 +10,7 @@ public class InputHandler {
     // Multiple options for validation
     public String getStringInput(String prompt, String... options) {
         String input;
-        while (true) { //continuous loop untill valid input is received
+        while (true) { //continuous loop until valid input is received
             System.out.print(prompt);
             input = scanner.nextLine().toLowerCase();
 
