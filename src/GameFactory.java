@@ -7,6 +7,8 @@ class GameFactory {
                 return new OrderChaos();
             case "SuperTicTacToe":
                 return new SuperTicTacToe();
+            case "Quoridor":
+                return new Quoridor();
             default:
                 throw new IllegalArgumentException("Unknown game type: " + type);
         }

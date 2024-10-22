@@ -12,6 +12,7 @@ class GameController {
         gameStatsMap.put("TicTacToe", new GameStats("TicTacToe"));
         gameStatsMap.put("OrderChaos", new GameStats("OrderChaos"));
         gameStatsMap.put("SuperTicTacToe", new GameStats("SuperTicTacToe"));
+        gameStatsMap.put("Quoridor", new GameStats("Quoridor"));
     }
 
     public void startGame() {
@@ -20,11 +21,12 @@ class GameController {
             System.out.println("1. Tic Tac Toe");
             System.out.println("2. Order & Chaos");
             System.out.println("3. Super Tic Tac Toe");
-            System.out.println("4. Exit");
+            System.out.println("4. Quoridor");
+            System.out.println("5. Exit");
 
-            int choice = inputHandler.getIntInput("Enter your choice (1-4): ", 1, 4);
+            int choice = inputHandler.getIntInput("Enter your choice (1-5): ", 1, 5);
 
-            if (choice == 4) {
+            if (choice == 5) {
                 break;
             }
 
@@ -48,6 +50,13 @@ class GameController {
                 System.out.println("Default Board size: 9 X 9");
                 boardSize = 9;
             }
+            if (choice == 4) {
+                System.out.println("Welcome to Quoridor!");
+                gameType = "Quoridor";
+                System.out.println("Default Board size: 9 X 9");
+                boardSize = 9; // Standard Quoridor board size
+            }
+
             Team[] teams = createTeams(choice);
             GameConfiguration config = new GameConfiguration(boardSize, teams);
             Game game = GameFactory.createGame(gameType);
@@ -76,7 +85,7 @@ class GameController {
             String teamName = inputHandler.getStringInput("Enter name for Team " + (i + 1) + ": ");
             String teamSymbol = "";
 
-            if (gameChoice == 1 || gameChoice==3) { //Ask for symbol in case of TTT and Super TTT Game only
+            if (gameChoice == 1 || gameChoice==3 || gameChoice==4) { //Ask for symbol in case of TTT and Super TTT Game only
                 while (true) {
                     teamSymbol = inputHandler.getSymbolInput("Enter symbol for " + teamName + ": ");
                     if (!usedSymbols.contains(teamSymbol)) {
